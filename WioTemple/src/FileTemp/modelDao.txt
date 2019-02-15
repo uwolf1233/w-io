@@ -1,0 +1,73 @@
+package *{importpath}*.dao;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import *{importpath}*.javaBean.*{modeloname}*;
+import *{importpath}*.javaBean.Page;
+import *{importpath}*.sql.*{modeloname}*Sqls;
+import com.wolf.javabean.ReqResBean;
+import com.wolf.jdbcs.MyJdbc;
+
+public class *{modeloname}*Dao {
+
+	private *{modeloname}*Dao(){}
+	
+	public static *{modeloname}*Dao *{modelname}*Dao = new *{modeloname}*Dao();
+	
+	public Page<*{modeloname}*> queryForPage(int page,int pageSize,*{modeloname}* *{modelname}*,String type,ReqResBean rrb){
+		String countSql = *{modeloname}*Sqls.countSql;
+		String wherestr = "";
+		List<Object> olist = null;
+		if(type!=null && type.equals("inputsearch")){
+			Object[] os = MyJdbc.INSTANCE.getWhereInputStr(*{modelname}*,Arrays.asList(new String[]{*{java_searchfield}*}));
+			olist = new ArrayList<Object>();
+			if(os!=null){
+				wherestr = os[0]+"";
+				olist.addAll((List<Object>)os[1]);
+			}
+		}else{
+			Object[] os = MyJdbc.INSTANCE.getWhereStr(*{modelname}*);
+			olist = new ArrayList<Object>();
+			if(os!=null){
+				wherestr = os[0]+"";
+				olist.addAll((List<Object>)os[1]);
+			}
+		}
+		countSql = countSql.replace("${where}", wherestr);
+		long count = MyJdbc.INSTANCE.queryCount(countSql, olist == null ? null : olist.toArray(), "count", rrb);
+		Page pagebean = new Page();
+		pagebean.setPage(page);
+		pagebean.setPageSize(pageSize);
+		pagebean.setTotalSize(count);
+		pagebean.sum();
+		String *{modelname}*Sql = *{modeloname}*Sqls.*{modelname}*Sql;
+		*{modelname}*Sql = *{modelname}*Sql.replace("${where}", wherestr);
+		olist.add(pagebean.getCurindex());
+		olist.add(pagebean.getPageSize());
+		List<*{modeloname}*> *{modelname}*list =  MyJdbc.INSTANCE.queryForList(*{modelname}*Sql, olist.toArray(), *{modeloname}*.class, rrb);
+		pagebean.setList(*{modelname}*list);
+		return pagebean;
+	}
+	
+	public int insert(*{modeloname}* *{modelname}*,ReqResBean rrb){
+		return MyJdbc.INSTANCE.javaBeanSaveEx(*{modelname}*, "*{sysname}*_*{modelname}*", rrb);
+	}
+	
+	public int update(*{modeloname}* *{modelname}*,ReqResBean rrb){
+		return MyJdbc.INSTANCE.javaBeanUpdateEx(*{modelname}*, "*{sysname}*_*{modelname}*", "id", rrb);
+	}
+	
+	public int deleteIds(String ids,ReqResBean rrb){
+		String batchDeleteSql = *{modeloname}*Sqls.batchDeleteSql;
+		batchDeleteSql = batchDeleteSql.replace("${ids}", ids);
+		return MyJdbc.INSTANCE.update(batchDeleteSql, null, rrb);
+	}
+	
+	public int updateStatus(String id,String flowstatus,String explain,ReqResBean rrb){
+		String updateStatusSql = *{modeloname}*Sqls.updateStatusSql;
+		return MyJdbc.INSTANCE.update(updateStatusSql, new Object[]{flowstatus,explain,id}, rrb);
+	}
+	
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!-- 消费者ip -->
+	<consumerip>localhost</consumerip>
+	<!-- 消费者端口 -->
+	<consumerport>8005</consumerport>
+	<!-- 消费者线程数 -->
+	<consumergroupNum>2</consumergroupNum>
+	<!-- 订阅者ip -->
+	<subscriberip>localhost</subscriberip>
+	<!-- 订阅者端口 -->
+	<subscriberport>8005</subscriberport>
+	<!-- 订阅者线程数 -->
+	<subscribergroupNum>2</subscribergroupNum>
+	<!-- tcp方式ip -->
+	<tcpid>localhost</tcpid>
+	<!-- tcp方式端口 -->
+	<tcpport>8005</tcpport>
+	<!-- tcp方式线程数 -->
+	<tcpgroupNum>2</tcpgroupNum>
+	<!-- udp方式ip -->
+	<udpid>localhost</udpid>
+	<!-- udp方式端口 -->
+	<udpport>8006</udpport>
+	<!-- udp方式线程数 -->
+	<udpgroupNum>2</udpgroupNum>
+	<!-- 系统类型 -->
+	<systemtype>windows</systemtype>
+	<!-- 是否连接数据库 -->
+	<isdb>true</isdb>
+	<!-- 数据库配置 -->
+	<!-- 数据库连接 -->
+	<dburl>jdbc:sqlserver://192.168.56.80:1433;DatabaseName=WioMQ</dburl>
+	<!-- 数据库名 -->
+	<dbusername>sa</dbusername>
+	<!-- 数据库密码  -->
+	<dbuserpass>123</dbuserpass>
+	<cachePrepStmts>true</cachePrepStmts>
+	<prepStmtCacheSize>300</prepStmtCacheSize>
+	<prepStmtCacheSqlLimit>2048</prepStmtCacheSqlLimit>
+	<!-- 数据库配置 -->
+</Config>

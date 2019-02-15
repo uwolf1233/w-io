@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>W-IOIM</title>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/LayerUI/css/layui.css">
+<link rel="stylesheet" href="/ztree/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/RoleMg/RoleMg.css">
+<!-- <link rel="stylesheet" type="text/css" href="/SystemShow/css/SystemShow.css"> -->
+</head>
+<body class="layui-layout-body">
+<div style="position:absolute;top:20px;left:20px;width:200px;border:1px solid gray;height:400px;">
+	<div style='width:100%;height:30px;'>
+		<div style='width:50px;height:100%;float:left;line-height:30px;text-align:center;font-size:15px;cursor:pointer;'>聊天</div>
+		<div style='width:50px;height:100%;float:left;line-height:30px;text-align:center;font-size:15px;cursor:pointer;'>群聊</div>
+		<div style='width:50px;height:100%;float:left;line-height:30px;text-align:center;font-size:15px;cursor:pointer;'>问答</div>
+		<div style='width:48px;height:100%;float:left;line-height:30px;text-align:center;font-size:15px;cursor:pointer;'>+</div>
+	</div>
+	<div style='width:100%;height:328px;border-top:2px solid gray;' id='users'>
+		<div style='width:100%;height:40px;font-size:16px;line-height:40px;padding-left:10px;margin-top:10px;cursor:pointer;'>测试</div>
+		<div style='width:100%;height:40px;font-size:16px;line-height:40px;padding-left:10px;cursor:pointer;'>测试</div>
+		<div style='width:100%;height:40px;font-size:16px;line-height:40px;padding-left:10px;cursor:pointer;'>测试</div>
+		<div style='width:100%;height:40px;font-size:16px;line-height:40px;padding-left:10px;cursor:pointer;'>测试</div>
+		<div style='width:100%;height:40px;font-size:16px;line-height:40px;padding-left:10px;cursor:pointer;'>测试</div>
+	</div>
+	<div style='width:100%;height:38px;border-top:2px solid gray;'>
+		<div>其他功能</div>
+	</div>
+</div>
+<div style='position:absolute;top:20px;left:300px;width:400px;height:480px;border:1px solid gray;'>
+	<div style='width:100%;height:40px;line-height:40px;text-align:center;font-weight:blod;color:green'>测试</div>
+	<div style='width:390px;height:270px;border:1px solid gray;margin:0 0 0 4px;overflow-x:hidden;' id='getsend'>
+	</div>
+	<div style='width:390px;height:30px;margin:5px 0 0 4px;background:yellow;'>
+	</div>
+	<div style='width:390px;height:80px;margin:5px 0 0 4px;'>
+		<textarea style='width:99%;height:100%;' id='sends'></textarea>
+	</div>
+	<div style='width:390px;height:30px;margin:5px 0 0 4px;'>
+		<button style='margin:10px 0 0 60%;'>关闭</button>
+		<button style='margin:10px 0 0 10px;' onclick=sendfun()>发送</button>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+	var tabNamesType = [];
+</script>
+<script type="text/javascript" src="/AllJs/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="/AllJs/w-io-websocket2.js"></script>
+<script type="text/javascript" src="/AllJs/formhandle.js"></script>
+<script type="text/javascript" src="/LayerUI/layui.all.js"></script>
+<script type="text/javascript" src="/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript" src="/AllJs/wio.js"></script>
+<script type="text/javascript">
+	//用于刷新页面缓存
+	window.onbeforeunload = function() {
+			$.ajax({
+				url:'/systemRefreshStatic',
+				type:'get',
+				data:{'sessionId':'123123'}
+			})
+		}
+</script>
+<script type="text/javascript">
+	$(document).keydown(function(event){
+	　　　　if(event.keyCode == 13){
+	　　　　　　sendfun();
+	　　　　}
+	});
+	$.ajax({
+		url:'/im_getUsers?sessionId=123123',
+		type:'get',
+		dataType:'json',
+		success:function(data){
+			console.log(JSON.stringify(data));
+		}
+	})
+	var currentUUID = uuid(16,16);
+	var myws = createMyWebSocketObj({
+		'url':'ws://localhost:5680/ws',
+		'path':'/linein',
+		'data':'line1',
+		'sessionId':'123123',
+		'message':function(data){
+			if(data == 'lineinsuccess'){
+				myws.wioWebsocketChange('123123',"/say");
+				return;
+			}
+			var cuuid = data.substr(0,16);
+			var cmessage = data.substr(16);
+			if(cuuid == currentUUID){//证明是自己发的
+				$("#getsend").append("<div style='width:100%;margin:5px 0 5px 0;font-size:15px;'><div style='float:left;margin-left:10px;'>mysay:</div>"
+				+"<div style='float:left;margin-left:10px;max-width:278px;background:#edf8f1;white-space:normal;word-break:break-all;word-wrap:break-word;padding:5px 5px 5px 5px;'>"
+				+cmessage+"</div><div style='clear:both;'></div></div>");
+			}else{
+				$("#getsend").append("<div style='width:100%;margin:5px 0 5px 0;font-size:15px;'><div style='float:right;margin-right:10px;'>:yousay</div>"
+				+"<div style='float:right;margin-right:10px;max-width:278px;background:#edf8f1;white-space:normal;word-break:break-all;word-wrap:break-word;padding:5px 5px 5px 5px;'>"
+				+cmessage+"</div><div style='clear:both;'></div></div>")
+			}
+			var ele = document.getElementById('getsend');
+			ele.scrollTop = ele.scrollHeight;
+		},
+		'close':function(){}
+	}).wiowebsocket();
+	function sendfun(){
+		if(myws!=undefined && myws!=null){
+			var senddata = $("#sends").val();
+			myws.wioSendMessage('123123',currentUUID+senddata);
+		}else{
+			console.log("myws---ws is undefined");
+			$("#getsend").val("连接失败");
+		}
+	}
+</script>
+</html>

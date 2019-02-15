@@ -1,0 +1,57 @@
+//varBinary
+create table queueMessage(--生产的消息表
+	id varchar(50),
+	byteString varbinary(max),
+	status varchar(50),
+	producerid varchar(50),
+	producername varchar(50)
+)
+create table topicMessage(--发布的消息表
+	id varchar(50),
+	byteString varbinary(max),
+	status varchar(50),
+	publisherid varchar(50),
+	publishername varchar(50)
+)
+create table tranMessage(--事务消息表
+	id varchar(50),
+	type varchar(10),
+	endtime varchar(50),
+	queueName varchar(50),
+	transName varchar(50),
+	byteString varbinary(max),
+	ppid varchar(50),
+	ppname varchar(100),
+	status varchar(10)--根据状态判断消息是否已经提交或者回滚，-1为回滚，0为等待，1为提交
+)
+create table consumerQueueMessage(--消费者消息表
+	consumerid varchar(50),
+	queuemessageid varchar(50),
+	status varchar(10)
+)
+create table subscriberTopicMessage(--订阅者消息表
+	subscriberid varchar(50),
+	topicmessageid varchar(50),
+	status varchar(10)
+)
+create table mqlog(--mqserver日志表
+	id varchar(50) primary key,
+	logdata varchar(2000),
+	logtime varchar(100)
+)
+create table tranproducer(--生产者本地事务表
+	producerid varchar(50),
+	producername varchar(50),
+	queuename varchar(50),
+	transname varchar(50),
+	transtatus varchar(50),--对应tranType
+	status varchar(3)--避免相同事务名称
+)
+create table tranpublisher(--发布者本地事务表
+	publisherid varchar(50),
+	publishername varchar(50),
+	queuename varchar(50),
+	transname varchar(50),
+	transtatus varchar(50),--对应tranType
+	status varchar(3)--避免相同事务名称
+)

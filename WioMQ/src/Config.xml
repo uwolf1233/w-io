@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!-- tcp boss数量 -->
+	<tcpbossNum>1</tcpbossNum>
+	<!-- tcp worker数量 -->
+	<tcpworkerNum>2</tcpworkerNum>
+	<!-- tcp端口 -->
+	<tcpport>8005</tcpport>
+	<!-- udp gropu数量 -->
+	<udpgroupNum>2</udpgroupNum>
+	<!-- udp端口 -->
+	<udpport>8005</udpport>
+	<!-- 系统类型 -->
+	<systemtype>windows</systemtype>
+	<!-- 事务消息最大超时时间（秒） -->
+	<tranMessagemaxTime>10</tranMessagemaxTime>
+	<!-- 事务消息队列中 -->
+	<tranMessageQueue>1000</tranMessageQueue>
+	<!-- 事务反消息反查时间间隔（秒） -->
+	<tranMessageScanMinute>10</tranMessageScanMinute>
+	<!-- 最大消费者数量 -->
+	<consumerQueueNum>1000</consumerQueueNum>
+	<!-- 是否连接数据库 -->
+	<isdb>true</isdb>
+	<!-- 数据库配置 -->
+	<!-- 数据库连接 -->
+	<dburl>jdbc:sqlserver://192.168.56.80:1433;DatabaseName=WioMQ</dburl>
+	<!-- 数据库名 -->
+	<dbusername>sa</dbusername>
+	<!-- 数据库密码  -->
+	<dbuserpass>123</dbuserpass>
+	<cachePrepStmts>true</cachePrepStmts>
+	<prepStmtCacheSize>300</prepStmtCacheSize>
+	<prepStmtCacheSqlLimit>2048</prepStmtCacheSqlLimit>
+	<!-- 数据库配置 -->
+</Config>

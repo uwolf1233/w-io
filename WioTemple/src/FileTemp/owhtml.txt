@@ -1,0 +1,21 @@
+<dl class='layui-nav-child'>
+	<dd><a href='#' id='*{modelname}*'>*{modelcname}*</a></dd>
+</dl>
+<!-- js -->
+$('#*{modelname}*').click(function(){
+  				if($("#*{sysname}**{modelname}*").length>0){
+  					return;
+  				}
+				//新增一个Tab项
+			    element.tabAdd('*{sysname}**{systype}*page', {
+			        title: '*{modelcname}*' 
+			        ,content: '<div class="layui-tab-item" ds="*{sysname}**{modelname}*"></div>'
+			        ,id: '*{sysname}**{modelname}*id' 
+			    });
+			    element.tabChange('*{sysname}**{systype}*page','*{sysname}**{modelname}*id');
+			    $("[ds='*{sysname}**{modelname}*']").parent().attr("id","*{sysname}**{modelname}*");
+				$("#ds").remove();//这里删除当前层，拿上一层
+		    	$.getScript('/*{sysname}**{systype}*/*{modelname}*/js/*{modelname}*.js',function(){
+					*{sysname}**{systype}*_getall_*{modelname}*();
+				})
+			})

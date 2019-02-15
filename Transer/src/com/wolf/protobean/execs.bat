@@ -1,0 +1,1 @@
+protoc --proto_path=E:\ERPProject\Transer\src\com\wolf\protobean  --java_out=E:\ERPProject\Transer\src  E:\ERPProject\Transer\src\com\wolf\protobean\*.proto

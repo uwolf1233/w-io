@@ -1,0 +1,1 @@
+protoc --proto_path=E:\ERPProject\Wolfeye\src\com\wolf\protobean  --java_out=E:\ERPProject\Wolfeye\src  E:\ERPProject\Wolfeye\src\com\wolf\protobean\*.proto

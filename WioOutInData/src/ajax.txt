@@ -1,0 +1,26 @@
+var savePermiJson = {'name':'name1','types':'outin','tablename':'outintest','database':'db',
+'outinfields':[{'fieldname':'id','fieldcname':'订单号','fieldlen':'50','cannull':'1','nulldata':''},
+{'fieldname':'ordername','fieldcname':'订单名称','fieldlen':'50','cannull':'1','nulldata':''},
+{'fieldname':'ordertype','fieldcname':'订单类型','fieldlen':'50','cannull':'1','nulldata':''},
+{'fieldname':'starttime','fieldcname':'订单开始时间','fieldlen':'50','cannull':'1','nulldata':''},
+{'fieldname':'endtime','fieldcname':'订单结束时间','fieldlen':'50','cannull':'1','nulldata':''},
+{'fieldname':'status','fieldcname':'状态','fieldlen':'50','cannull':'1','nulldata':''}]};
+$.ajax({
+	url:'/outin_saveOutInSet?sessionId=123123',
+	data:{'jsonData':JSON.stringify(savePermiJson)},
+	type:'get',
+	dataType:'json',
+	success:function(data){
+		console.log(JSON.stringify(data));
+	}
+});
+//d0469ac35836470d8b85b2b44d0c9ca7
+$.ajax({
+	url:'/outin_outExcel?sessionId=123123',
+	data:{'outinid':'d0469ac35836470d8b85b2b44d0c9ca7'},
+	type:'get',
+	dataType:'json',
+	success:function(data){
+		console.log(JSON.stringify(data));
+	}
+});

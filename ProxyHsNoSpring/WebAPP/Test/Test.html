@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/Test/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="/Test/echarts.js"></script>
+<script type="text/javascript" src="/Test/test.js"></script>
+<script type="text/javascript" src="/Test/w-io-websocket.js"></script>
+</head>
+<body onload="a()">
+<!-- 123中文 -->
+<!-- <form action='/fileuptest1' enctype="multipart/form-data" method="POST"> -->
+<!-- 		<input type='file' name='upfile'> -->
+<!-- 		<input type='file' name='upfile1'> -->
+<!-- 		<input type='text' name='abc' value='abc1'> -->
+<!-- 		<input type='hidden' name='sessionId' value='123123'> -->
+<!-- 		<input type='submit' />  -->
+<!-- 	</form> -->
+<!-- <form action='/fileuptest1' method="POST"> -->
+<!-- 		<input type='text' name='abc' value='abc2'> -->
+<!-- 		<input type='submit' /> -->
+<!-- 	</form> -->
+<!-- 	<button id='button'>123</button> -->
+<!-- 	<button onclick=wstest()>message</button> -->
+<!-- 	<button onclick=wstest0()>message0</button> -->
+<!-- 	<button onclick=wstest1()>change</button> -->
+<!-- 	<button onclick=wstest2()>message2</button> -->
+<!-- 	<a id='downFile' href='/test2downfile?sessionId=123123'>下载</a> -->
+	<button onclick=sendMessage()>message</button>
+<!-- 	<button onclick=closews()>close</button> -->
+<!-- <button onclick=tests()>tests</button> -->
+</body>
+<script type="text/javascript">
+	$(function(){
+		$.ajax({
+			url:'/role_getRoles',
+			//url:'/ninterface',
+			//url:'/winterface',
+			type:'get',
+			data:{'sessionId':'123123'},
+			dataType:'json',
+			success:function(data){
+				console.log("1----"+JSON.stringify(data));
+				console.log("2-----"+data['datas']);
+				console.log("3-----"+data['datas'][0]['data']);
+			}
+		})
+// 		wiowebsocket({
+// 			'url':'ws://localhost:5680/ws',
+// 			'path':'/httpinterface1',
+// 			'data':'',
+// 			'sessionId':'123123',
+// 			'message':function(data){
+// 				console.log(data);
+// 			},
+// 			'close':function(){}
+// 		});
+		//tests();
+	})
+	function sendMessage(){
+		wioSendMessage('123123','mytest');
+	}
+	function closews(){
+		console.log('close');
+		wioWebsocketClose();
+	}
+	function change(){
+		wioWebsocketChange('123123','/test2webSocket')
+	}
+	function tests(){
+		for(var i=0;i<100;i++){
+			$.ajax({
+				url:'/testa1',
+				data:{'data':'123','sessionId':'123123'},
+				type:'get',
+				dataType:'json',
+				success:function(data){
+					console.log(JSON.stringify(data));
+				}
+			})
+		}
+	}
+// 	var ws;
+// 	$(function(){
+// 		$("#button").click(function(){
+// 			$.ajax({
+// 				url:'/testa3file',
+// 				type:'post',
+// 				data:{'abc':'123','sessionId':'123123'}
+// 			})
+// 		})
+// 		ws = new WebSocket("ws://localhost:5680/ws");//wioWebsocket由后端配置默认websocket路径，为了区别http
+// 		ws.onopen = function(evt) { 
+// 			  console.log("Connection open ..."); 
+// 			  ws.send("{'sessionId':'123123','path':'/test1webSocket','type':'open'}");
+// 		};
+// 		ws.onmessage = function(evt) {
+// 			  console.log( "Received Message: " + evt.data);
+// 		};
+		
+// 		ws.onclose = function(evt) {
+// 		  	console.log("Connection closed.");
+// 		};
+// 	})
+// 	function wstest(){
+// 		 if(ws!=undefined){
+// 			 ws.send("{'sessionId':'123123','path':'/test1webSocket','type':'message','message':'abc123'}");
+// 			 //ws.send("{'sessionId':'','path':'','type':'close','message':''}");
+// 		 }
+// 	}
+// 	function wstest0(){
+// 		 if(ws!=undefined){
+// 			 ws.send("{'sessionId':'123123','path':'/test2webSocket','type':'message','message':'ttt1'}");
+// 			 //ws.send("{'sessionId':'','path':'','type':'close','message':''}");
+// 		 }
+// 	}
+// 	function wstest1(){
+// 		 if(ws!=undefined){
+// 			 ws.send("{'sessionId':'123123','path':'/test2webSocket','type':'change','message':''}");
+// 			 //ws.send("{'sessionId':'','path':'','type':'close','message':''}");
+// 		 }
+// 	}
+// 	function wstest2(){
+// 		 if(ws!=undefined){
+// 			 ws.send("{'sessionId':'123123','path':'','type':'message','message':'123123ss'}");
+// 			 //ws.send("{'sessionId':'','path':'','type':'close','message':''}");
+// 		 }
+// 	}
+	//用于刷新页面缓存
+	function sys——RefResh(){
+		$.ajax({
+			url:'/systemRefreshStatic',
+			type:'get',
+			data:{'sessionId':'123123'}
+		})
+	}
+</script>
+</html>

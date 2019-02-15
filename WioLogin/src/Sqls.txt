@@ -1,0 +1,11 @@
+create table logusers(
+	id varchar(50) primary key,
+	name varchar(50),
+	pwd bytea,--postgresql
+	--pwd varbinary,--sqlserver
+	status varchar(10),--0是未登陆，1是登录，-1是废弃
+)
+create table logsession(--session表
+	logusersid varchar(50),
+	sessionid varchar(50)
+)

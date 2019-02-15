@@ -1,0 +1,24 @@
+create table system_dept( --部门管理
+	id varchar(100) primary key,
+	name varchar(100),
+	depttype varchar(50),--部门类型
+	deptproperty varchar(50),--部门属性
+	systemname varchar(100), --系统名字
+	pid varchar(100),
+	isend varchar(10) --是否末节点,0是否，1是是
+)
+create table system_user_dept( --部门对应用户
+	deptid varchar(100),
+	userid varchar(100),
+	systemname varchar(100) --系统名字
+)
+create table system_depttype(--部门类型
+	id varchar(100) primary key,
+	depttype varchar(50),
+	systemname varchar(50)
+)
+create table system_deptproperty(--部门属性
+	id varchar(100) primary key,
+	deptproperty varchar(50),
+	systemname varchar(50)
+)

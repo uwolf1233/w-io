@@ -1,0 +1,1 @@
+protoc --proto_path=D:\p4\WioKey\src\com\wolf\protobean --java_out=D:\p4\WioKey\src  D:\p4\WioKey\src\com\wolf\protobean\*.proto

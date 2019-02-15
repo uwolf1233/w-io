@@ -1,0 +1,28 @@
+create table users(
+	id varchar(60) primary key,
+	name varchar(100)
+)
+create table roles(
+	id varchar(60) primary key,
+	name varchar(100)
+)
+create table permi(
+	id varchar(60) primary key,
+	name varchar(100)
+)
+create table datas(
+	id varchar(60) primary key,
+	data varchar(3000)
+)
+create table users_roles(
+	usersid varchar(60),
+	rolessid varchar(60)
+)
+create table roles_permi(
+	rolesid varchar(60),
+	permiid varchar(60)
+)
+create table permi_datas(
+	permiid varchar(60),
+	datasid varchar(60)
+)

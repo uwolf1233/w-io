@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<!-- 本机ip -->
+	<ip>localhost</ip>
+	<!-- 本地端口 -->
+	<port>12345</port>
+	<!-- 本地服务器名 -->
+	<serverName>server1</serverName>
+	<!-- 业务线程池线程数 -->
+	<threadPoolNum>5</threadPoolNum>
+	<!-- 最大接受信息数，业务线程池满后，其他的会进入等待，如果满了，将进入下一个负载节点，如果没有负载节点，将拒绝服务 -->
+	<threadPoolNumMax>300</threadPoolNumMax>
+	<!-- 网络IO线程池数 -->
+	<groupNum>4</groupNum>
+	<!-- 注册中心ip -->
+	<regIp>localhost</regIp>
+	<!-- 注册中心端口 -->
+	<regPort>9000</regPort>
+	<!-- 事务调度器ip,事务调度器不连接的话事务会出问题 -->
+	<transIp>localhost</transIp>
+	<!-- 事务调度器端口 -->
+	<transPort>8001</transPort>
+	<!-- 日志IP -->
+	<logIp>localhost</logIp>
+	<!-- 日志端口 -->
+	<logPort>8002</logPort>
+</Config>

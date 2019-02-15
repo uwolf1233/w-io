@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>W-IO监控中心</title>
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="/LayerUI/css/layui.css">
+<link rel="stylesheet" href="/ztree/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="/RoleMg/RoleMg.css">
+<!-- <link rel="stylesheet" type="text/css" href="/SystemShow/css/SystemShow.css"> -->
+</head>
+<body class="layui-layout-body">
+	<div class='layui-layout layui-layout-admin' id='bodydivs'>
+		<div class='layui-header'>
+			<div class='layui-logo'>W-IO运维中心</div>
+			<ul class='layui-nav layui-layout-left'>
+				<li class="layui-nav-item">
+					<a class='layui-nav-item' href="#" onclick='handle_http($(this).parent())'>HTTP</a>
+				</li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#" onclick=''>WebSocket</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#" onclick=''>Server</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#">分布式</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#">业务集群</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#">事务调度器</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#" onclick=''>狼眼</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#" id='RoleMgHandle'>授权中心</a>
+			    </li>
+			    <li class="layui-nav-item">
+			    	<a class='layui-nav-item' href="#" onclick=sys_RefResh()>缓存刷新</a>
+			    </li>
+			</ul>
+		</div>
+		
+		<div class='layui-side layui-bg-black'>
+			<div class='layui-side-scroll' id='roleMgLeft'>
+				<ul class="layui-nav layui-nav-tree" lay-filter="test">
+					<li class='layui-nav-item layui-nav-itemed'>
+						<a href='#'>授权管理</a>
+						<dl class='layui-nav-child'>
+							<dd><a href='#' id='systemRole'>总授权</a></dd>
+							<dd><a href='#'>业务授权</a></dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class='layui-body'>
+ 			<div class="layui-tab" lay-allowClose="true">
+ 			   <ul class="layui-tab-title" id='layuiBodyTab'>
+ 			   </ul>
+ 			   <div class="layui-tab-content" id='layuiBodyTabcontent'>
+ 			   </div>
+ 			</div>
+		</div>
+		
+	</div>
+</body>
+<script type="text/javascript">
+	var tabNamesType = [];
+</script>
+<script type="text/javascript" src="/AllJs/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="/AllJs/w-io-websocket.js"></script>
+<script type="text/javascript" src="/AllJs/formhandle.js"></script>
+<script type="text/javascript" src="/LayerUI/layui.all.js"></script>
+<script type="text/javascript" src="/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<script type="text/javascript" src="/AllJs/wio.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$.getScript('/Roles/role.js',function(){
+			$("#RoleMgHandle").click(function(){
+				showRoleLeft();
+			})
+		})
+	})
+</script>
+<script type="text/javascript">
+	//用于刷新页面缓存
+	window.onunload = function() {
+			$.ajax({
+				url:'/systemRefreshStatic',
+				type:'get',
+				data:{'sessionId':'123123'}
+			})
+		}
+</script>
+</html>

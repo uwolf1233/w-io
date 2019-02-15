@@ -1,0 +1,19 @@
+create table system_permi( --权限管理
+	id varchar(100) primary key,
+	name varchar(100),
+	systemname varchar(100), --系统名字
+	pid varchar(100),
+	isend varchar(10) --是否末节点,0是否，1是是
+);
+create table system_role_permi( --角色对应权限
+	permiid varchar(100),
+	roleid varchar(100),
+	systemname varchar(100) --系统名字
+);
+create table system_permi_data(--权限数据
+	permiid varchar(50),
+	datas bytea,--postgresql --目前只支持sql语句和字符串条件
+	--datas varbinary,--sqlserver
+	datatype varchar(20), --目前只支持sql类型和字符串
+	dataclass varhcar(50) --数据分类
+);

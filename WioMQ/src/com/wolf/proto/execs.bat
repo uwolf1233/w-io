@@ -1,0 +1,1 @@
+protoc --proto_path=H:\MeProject1\WioMQ\src\com\wolf\proto  --java_out=H:\MeProject1\WioMQ\src  H:\MeProject1\WioMQ\src\com\wolf\proto\*.proto

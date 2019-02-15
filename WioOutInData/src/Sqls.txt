@@ -1,0 +1,28 @@
+create table outin(
+	outinid varchar(50),
+	name varchar(100),
+	types varchar(10),--out,in,outin
+);
+create table outinfields(--字段设置
+	id varchar(50) primary key,
+	outinid varchar(50),
+	fieldname varchar(50),
+	fieldcname varchar(100),
+	fieldlen varchar(100),--数据最大长度
+	cannull varchar(5),--是否允许空,0不允许，1允许
+	nulldata varchar(1000)--空的情况下默认值
+);
+create table outindbs(--后期扩展
+	outinid varchar(50),
+	tablename varchar(100),
+	tablecname varchar(100),
+	databases varchar(50)
+)
+create table outintest(
+	id varchar(50),
+	ordername varchar(50),
+	ordertype varchar(50),
+	starttime varchar(50),
+	endtime varchar(50),
+	status varchar(10)
+)

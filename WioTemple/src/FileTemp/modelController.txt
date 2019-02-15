@@ -1,0 +1,173 @@
+package *{importpath}*.controller;
+
+import java.util.Map;
+import java.util.UUID;
+
+import *{importpath}*.javaBean.*{modeloname}*;
+import *{importpath}*.javaBean.Page;
+import *{importpath}*.javaBean.StaticBeans;
+import *{importpath}*.service.*{modeloname}*Server;
+import com.wolf.javabean.ReqResBean;
+import com.wolf.javabean.SessionLine;
+import com.wolf.server.MethodMapping;
+import java.util.HashMap;
+import *{importpath}*.dao.*{modeloname}*Dao;
+import com.wolf.serverLine.ServerRequestBean;
+import com.google.gson.reflect.TypeToken;
+
+public class *{modeloname}*Controller {
+
+	@MethodMapping(path="/ow_getAll*{modeloname}*",interfacetype="h")
+	public void getAll*{modeloname}*(ReqResBean rrb,SessionLine sessionLine){
+		try {
+			String type = rrb.getRequestMap().get("type");
+			Page<*{modeloname}*> *{modelname}*Page = *{modeloname}*Server.*{modelname}*Server.queryForPage(Integer.parseInt(rrb.getRequestMap().get("page")+""), 
+					Integer.parseInt(rrb.getRequestMap().get("limit")+""), mapToBean(rrb),type ,rrb);
+			*{modelname}*Page.setCode(0);
+			*{modelname}*Page.setMsg("");
+			rrb.setResponseData(StaticBeans.gson.toJson(*{modelname}*Page));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rrb.setResponseData("");
+		}
+	}
+	
+	@MethodMapping(path="/ow_add*{modeloname}*",interfacetype="h")
+	public void add*{modeloname}*(ReqResBean rrb,SessionLine sessionLine){
+		try {
+			*{modeloname}* *{modelname}* = mapToBean(rrb);
+			*{modelname}*.setId(UUID.randomUUID().toString().replace("-", ""));
+			*{modelname}*.setStatus("1");//默认采用Status
+			int i = *{modeloname}*Server.*{modelname}*Server.insert(*{modelname}*, rrb);
+			if(i > 0){
+				rrb.setResponseKV("type", "1");
+				rrb.setResponseKV("data", "保存成功");
+			}else{
+				rrb.setResponseKV("type", "0");
+				rrb.setResponseKV("data", "保存失败");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rrb.setResponseKV("type", "保存失败");
+		}
+	}
+	
+	@MethodMapping(path="/ow_update*{modeloname}*",interfacetype="h")
+	public void update*{modeloname}*(ReqResBean rrb,SessionLine sessionLine){
+		try {
+			*{modeloname}* *{modelname}* = mapToBean(rrb);
+			int i = *{modeloname}*Server.*{modelname}*Server.update(*{modelname}*, rrb);
+			if(i > 0){
+				rrb.setResponseKV("type", "1");
+				rrb.setResponseKV("data", "保存成功");
+			}else{
+				rrb.setResponseKV("type", "0");
+				rrb.setResponseKV("data", "保存失败");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rrb.setResponseKV("type", "保存失败");
+		}
+	}
+	
+	@MethodMapping(path="/ow_delete*{modeloname}*Ids",interfacetype="h")
+	public void delete*{modeloname}*Ids(ReqResBean rrb,SessionLine sessionLine){
+		String ids = rrb.getRequestMap().get("ids");
+		int i = *{modeloname}*Server.*{modelname}*Server.deleteIds(ids, rrb);
+		rrb.setResponseKV("type", "删除成功");
+	}
+	
+	private *{modeloname}* mapToBean(ReqResBean rrb){
+		Map<String,String> map = rrb.getRequestMap();
+		return new *{modeloname}*()
+		*{mapToBeanField}*
+	}
+	
+	@MethodMapping(path="/ow_*{modeloname}*submit",interfacetype="h",trans=true)
+	public void submit(ReqResBean rrb,SessionLine sessionLine){
+		try {
+			String dataid = rrb.getRequestMap().get("dataid");
+			if(dataid == null || dataid.trim().equals("")){
+				rrb.thransThread(0);
+				rrb.setResponseKV("type", "error");
+				rrb.setResponseKV("data", "提交失败");
+			}
+			String flowName = "采购基本审核流程";
+			ServerRequestBean srb = new ServerRequestBean();
+			Map<String, String> map = new HashMap<String,String>();
+			map.put("dataid", dataid);
+			map.put("flowName", flowName);
+			Object o = srb.send("/createTask", map, true, rrb);
+			Map<String,String> retMap = StaticBeans.gson.fromJson(o+"", new TypeToken<Map<String,String>>(){}.getType());
+			if(retMap.get("type").equals("success")){
+				int i = *{modeloname}*Dao.*{modelname}*Dao.updateStatus(dataid, "2","",rrb);
+				if(i > 0){
+					rrb.thransThread(1);
+					rrb.setResponseKV("type", "success");
+					rrb.setResponseKV("data", "提交成功");
+				}else{
+					rrb.thransThread(0);
+					rrb.setResponseKV("type", "error");
+					rrb.setResponseKV("data", "提交失败");
+				}
+			}else{
+				rrb.thransThread(0);
+				rrb.setResponseKV("type", "error");
+				rrb.setResponseKV("data", "提交失败");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rrb.thransThread(0);
+			rrb.setResponseKV("type", "error");
+			rrb.setResponseKV("data", "提交失败");
+		}
+	}
+	
+	@MethodMapping(path="/*{sysname}*_*{modeloname}*audit",interfacetype="h",trans=true)
+	public void audit(ReqResBean rrb,SessionLine sessionLine){
+		String dataid = rrb.getRequestMap().get("dataid");
+		String explain = rrb.getRequestMap().get("explain");
+		String status = rrb.getRequestMap().get("status");
+		if(dataid == null || dataid.trim().equals("")){
+			rrb.thransThread(0);
+			rrb.setResponseKV("type", "error");
+			rrb.setResponseKV("data", "提交失败");
+		}
+		String flowName = "*{modelcname}*基本审核流程";
+		ServerRequestBean srb = new ServerRequestBean();
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("dataid", dataid);
+		map.put("flowName", flowName);
+		map.put("status", status);
+		try {
+			Object o = srb.send("/runTask", map, true, rrb);
+			Map<String,String> retMap = StaticBeans.gson.fromJson(o+"", new TypeToken<Map<String,String>>(){}.getType());
+			if(retMap.get("type").equals("success")){
+				int i = *{modeloname}*Dao.*{modelname}*Dao.updateStatus(dataid,"3", explain,rrb);
+				if(i > 0){
+					rrb.thransThread(1);
+					rrb.setResponseKV("type", "success");
+					rrb.setResponseKV("data", "审核成功");
+				}else{
+					rrb.thransThread(0);
+					rrb.setResponseKV("type", "error");
+					rrb.setResponseKV("data", "审核失败");
+				}
+			}else{
+				rrb.thransThread(0);
+				rrb.setResponseKV("type", "error");
+				rrb.setResponseKV("data", "审核失败");
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			rrb.thransThread(0);
+			rrb.setResponseKV("type", "error");
+			rrb.setResponseKV("data", "审核失败");
+		}
+	}
+}

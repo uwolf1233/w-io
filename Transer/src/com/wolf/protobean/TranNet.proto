@@ -1,0 +1,22 @@
+syntax = "proto3";
+package com.wolf.javabean;
+message TransDatas{
+	Trans trans = 1;
+	LineLog lineLog = 2;
+}
+message Trans{
+	bool trans = 1;//是否确认本次
+	sint64 tranCommitMinute = 2;
+	sint64 tranRollbackMinute = 3;
+	string mainId = 4;//主控id
+	string serverId = 5;//业务id
+	string type = 6;//确认类型，判断哪次提交(canCommit,commiting,commitend)
+	bool ismain = 7;//是否主控
+	bool compensate = 8;//是否补偿
+	sint64 status = 9;//0回滚，1是提交
+}
+message LineLog{//调用链日志
+	string mainId = 1;
+	string parentId = 2;
+	string id = 3;
+}

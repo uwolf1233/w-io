@@ -1,0 +1,5 @@
+insert into system_users values(replace(newid(),'-',''),'管理人员','system','0','0')
+insert into system_users values(replace(newid(),'-',''),'系统管理员','system','E504A8E168D44F90BD873220A850589E','0')
+insert into system_users values(replace(newid(),'-',''),'人员1','system','B464B16689084278B4D37545DA6DFBE9','1')
+insert into system_users values(replace(newid(),'-',''),'人员2','system','B464B16689084278B4D37545DA6DFBE9','1')
+insert into system_users values(replace(newid(),'-',''),'人员3','system','B464B16689084278B4D37545DA6DFBE9','1')

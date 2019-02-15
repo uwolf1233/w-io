@@ -1,0 +1,20 @@
+package *{importpath}*.javaBean;
+
+public class *{modeloname}* implements IdMoneyToMoney{
+
+*{javabeanprivate}*
+	
+*{javabeangetset}*
+	
+	@Override
+	public void findObj() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setIds(String[] ids) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

@@ -1,0 +1,96 @@
+create table flow(--流程表，每次修改流程表将修改原本的id，原本的流程将进入历史流程表，避免已执行的流程出现问题
+	id varchar(50) primary key,
+	flowname varchar(50),
+	initNum varchar(20)
+);
+create table hi_flow(--历史流程表
+	id varchar(50) primary key,
+	flowname varchar(50),
+	initNum varchar(20)
+);
+create table node(
+	flowid varchar(50),
+	nodeename varchar(50),
+	nodecname varchar(50),
+	type varchar(20),
+	lefts varchar(50),
+	tops varchar(50),
+	width varchar(50),
+	height varchar(50)
+);
+create table hi_node(
+	flowid varchar(50),
+	nodeename varchar(50),
+	nodecname varchar(50),
+	type varchar(20),
+	lefts varchar(50),
+	tops varchar(50),
+	width varchar(50),
+	height varchar(50)
+);
+create table line(
+	flowid varchar(50),
+	linename varchar(50),
+	froms varchar(50),
+	tos varchar(50),
+	type varchar(50),
+	status varchar(20),
+	name varchar(50),
+	m varchar(20)
+);
+create table hi_line(
+	flowid varchar(50),
+	linename varchar(50),
+	froms varchar(50),
+	tos varchar(50),
+	type varchar(50),
+	status varchar(20),
+	name varchar(50),
+	m varchar(20)
+);
+create table task(
+	id varchar(50) primary key,
+	flowid varchar(50),
+	dataid varchar(50),--数据id
+	status varchar(3)--0是运行中，1是结束，2是中止
+);
+create table runtask(
+	id varchar(50) primary key,
+	num varchar(50),
+	taskid varchar(50),
+	curnodeename varchar(50),
+	memo varchar(1000)
+);
+create table flowuser(--自行扩展
+	userid varchar(50),
+	flowid varchar(50),
+	nodeename varchar(50)
+)
+create table flowdept(
+	deptid varchar(50),
+	flowid varchar(50),
+	nodeename varchar(50)
+)
+create table flowrole(
+	roleid varchar(50),
+	flowid varchar(50),
+	nodeename varchar(50)
+)
+create table hi_flowuser(--自行扩展
+	userid varchar(50),
+	flowid varchar(50),
+	nodeename varchar(50)
+)
+create table hi_flowdept(
+	deptid varchar(50),
+	flowid varchar(50),
+	nodeename varchar(50)
+)
+create table hi_flowrole(
+	roleid varchar(50),
+	flowid varchar(50),
+	nodeename varchar(50)
+)
+
+
+

@@ -1,0 +1,14 @@
+commons-logging-1.2.jar
+dom4j-1.6.1.jar
+gson-2.7.jar
+netty-all-4.1.6.Final.jar
+protobuf-java-3.5.1.jar
+spring-aop-4.1.6.RELEASE.jar
+spring-beans-4.1.6.RELEASE.jar
+spring-context-4.1.6.RELEASE.jar
+spring-context-support-4.0.9.RELEASE.jar
+spring-core-4.1.6.RELEASE.jar
+spring-expression-4.1.6.RELEASE.jar
+spring-tx-4.1.6.RELEASE.jar
+
+--------版本无所谓，能运行就行-------

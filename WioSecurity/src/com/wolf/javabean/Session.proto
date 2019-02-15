@@ -1,0 +1,51 @@
+syntax = "proto3";
+package com.wolf.javabean;
+message SessionData{
+	string type = 1;//vaildpath,create,setAttr,getAttr,reset,removeAttr,clearAttr,setPath,hasSession
+	VaildPath vaildPath = 2;
+	CreateSession createSession = 3;
+	SetAttr setAttr = 4;
+	GetAttr getAttr = 5;
+	Reset reset = 6;
+	string sessionId = 7;
+	RemoveAttr removeAttr = 8;
+	SetPath setPath = 9;
+	CleanAttr cleanAttr = 10;
+	HasSession hasSession = 11;
+	string id = 12;
+}
+message VaildPath{
+	string path = 1;
+	string end = 2;//结果
+}
+message SetPath{
+	repeated string paths = 1;//批授权路径
+	string end = 2;
+}
+message CreateSession{
+	repeated SetAttr setAttrs = 1;//初始化session的元素
+	string end = 2;
+}
+message SetAttr{
+	string key = 1;
+	bytes datas = 2;
+	string end = 3;
+}
+message GetAttr{
+	string key = 1;
+	bytes datas = 2;
+	string end = 3;
+}
+message RemoveAttr{
+	string key = 1;
+	string end = 2;
+}
+message Reset{
+	string end = 1;
+}
+message CleanAttr{
+	string end = 1;
+}
+message HasSession{//判断session是否存在
+	string end = 1;
+}

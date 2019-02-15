@@ -1,0 +1,5 @@
+insert into system_permi values(replace(newid(),'-',''),'权限管理','system','0','0')
+insert into system_permi values(replace(newid(),'-',''),'权限查询','system','3D821553F8334987B13C437C55851E10','1')
+insert into system_permi values(replace(newid(),'-',''),'权限新增','system','3D821553F8334987B13C437C55851E10','1')
+insert into system_permi values(replace(newid(),'-',''),'权限修改','system','3D821553F8334987B13C437C55851E10','1')
+insert into system_permi values(replace(newid(),'-',''),'权限删除','system','3D821553F8334987B13C437C55851E10','1')

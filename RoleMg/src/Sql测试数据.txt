@@ -1,0 +1,36 @@
+insert into datas values(replace(newid(),'-',''),'数据1')
+insert into datas values(replace(newid(),'-',''),'数据2')
+insert into datas values(replace(newid(),'-',''),'数据3')
+insert into datas values(replace(newid(),'-',''),'数据4')
+insert into datas values(replace(newid(),'-',''),'数据5')
+insert into datas values(replace(newid(),'-',''),'数据6')
+
+insert into permi values(replace(newid(),'-',''),'权限数据1')
+insert into permi values(replace(newid(),'-',''),'权限数据2')
+insert into permi values(replace(newid(),'-',''),'权限数据3')
+insert into permi values(replace(newid(),'-',''),'权限数据4')
+insert into permi values(replace(newid(),'-',''),'权限数据5')
+insert into permi values(replace(newid(),'-',''),'权限数据6')
+
+insert into roles values(replace(newid(),'-',''),'角色数据1')
+insert into roles values(replace(newid(),'-',''),'角色数据2')
+insert into roles values(replace(newid(),'-',''),'角色数据3')
+insert into roles values(replace(newid(),'-',''),'角色数据4')
+insert into roles values(replace(newid(),'-',''),'角色数据5')
+insert into roles values(replace(newid(),'-',''),'角色数据6')
+
+insert into users values(replace(newid(),'-',''),'用户1')
+insert into users values(replace(newid(),'-',''),'用户2')
+insert into users values(replace(newid(),'-',''),'用户3')
+insert into users values(replace(newid(),'-',''),'用户4')
+insert into users values(replace(newid(),'-',''),'用户5')
+insert into users values(replace(newid(),'-',''),'用户6')
+
+
+
+
+
+
+
+
+

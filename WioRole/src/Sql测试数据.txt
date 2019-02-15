@@ -1,0 +1,5 @@
+insert into system_role values(replace(newid(),'-',''),'角色管理','system','0','0')
+insert into system_role values(replace(newid(),'-',''),'管理员角色','system','6F6D3034E5DF420E8D1B06DAB6F925B6','0')
+insert into system_role values(replace(newid(),'-',''),'系统管理员','system','3DAA1CEE3BBA47E1BE727650774CB24D','1')
+insert into system_role values(replace(newid(),'-',''),'测试管理员','system','3DAA1CEE3BBA47E1BE727650774CB24D','1')
+insert into system_role values(replace(newid(),'-',''),'总管理','system','3DAA1CEE3BBA47E1BE727650774CB24D','1')

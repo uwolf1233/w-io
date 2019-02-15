@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<systemtype>linux</systemtype>
+	<port>8002</port>
+	<bossNum>2</bossNum>
+	<workerNum>2</workerNum>
+<!-- 	<slogfilePath>G:/wioFiles/filehandle/logfile/slog</slogfilePath> -->
+<!-- 	<slogfileindex>G:/wioFiles/filehandle/logfile/slogindex</slogfileindex> -->
+<!-- 	<elogfilePath>G:/wioFiles/filehandle/logfile/elog</elogfilePath> -->
+<!-- 	<elogfileindex>G:/wioFiles/filehandle/logfile/elogindex</elogfileindex> -->
+	<slogfilePath>/home/abc/mytest/logfile/slog</slogfilePath>
+	<slogfileindex>/home/abc/mytest/logfile/slogindex</slogfileindex>
+	<elogfilePath>/home/abc/mytest/logfile/elog</elogfilePath>
+	<elogfileindex>/home/abc/mytest/logfile/elogindex</elogfileindex>
+</Config>

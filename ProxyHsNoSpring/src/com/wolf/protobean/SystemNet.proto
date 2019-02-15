@@ -1,0 +1,120 @@
+syntax = "proto3";
+package com.wolf.javabean;
+message Datas{
+	string handletype = 1;
+	SystemNetBean systemNetBean = 2;
+	RegBean regBean = 3;
+	HttpBean httpBean = 4;
+	ServerRequest serverRequest = 5;
+	ServerResponse serverResponse = 6;
+	Trans trans = 7;
+	PathDataCachepro pathDataCachepro = 8;
+	LineLog lineLog = 9;
+}
+message SystemNetBean{
+	string message = 1;
+}
+message RegBean{
+	string id = 1;
+	string serverName = 2;
+	string regstime = 3;
+	string regtype = 4;
+	string serverNode = 5;
+	string serverType = 6;
+	string ip = 7;
+	string port = 8;
+	//repeated string paths = 9; 
+	map<string,Cpaths> paths = 9;
+	sint32 requestnum = 10;
+}
+message Cpaths{
+	repeated string locknames = 1;//锁注册
+	int32 secondnum = 2;
+	sint64 geWait = 3;
+	bool trans = 4;//事务注册
+	sint64 tranCommitMinute = 5;
+	sint64 tranRollbackMinute = 6;
+	int32 threadPoolNumMax = 7;
+	bool hasFile = 8;//是否传输文件
+	bool fileIn = 9;//文件是否到当前方法
+	string interfacetype = 10;//s为内部接口，h为外部接口,w为websocket接口，sh为内外接口，作为接口分离，默认为内部
+}
+message HttpBean{
+	string id = 1;
+	string url = 2;
+	HttpServletRequest request = 3;
+	HttpServletResponse response = 4;
+	bool isws = 5;//是否websocket请求
+	Websocketms websocketms = 6;
+}
+message HttpServletRequest{
+	map<string,string> parameter = 1;
+	HttpSession session = 2;
+	Locks locks = 3;
+	repeated Files files = 4;
+}
+message HttpServletResponse{
+	string type = 1;
+	string responseData = 2;
+	map<string,string> attr = 3;
+	string responseId = 4;
+	string lockNames = 5;
+	Locks locks = 6;
+	repeated Cookies cookie = 7;
+	Files files = 8;
+}
+message Locks{
+	string id = 1;
+}
+message HttpSession{
+	string sessionId = 1;
+}
+message ServerRequest{
+	string path = 1;
+	ServerlineData serverlineData = 2;//发送的数据
+	HttpSession session = 3;//交给httprequest来做
+	repeated Files files = 4;//文件传输
+}
+message ServerResponse{
+	string responseId = 1;
+	ServerlineData serverlineData = 2;//返回的数据
+	string channelId = 3;
+	bool isReturn = 4;
+	string type = 5;
+	Locks locks = 6;
+	repeated Files files = 7;//文件传输
+}
+message ServerlineData{
+	string sendDataStr = 1;
+	map<string,string> attr = 2;
+}
+message Trans{
+	string mainId = 1;//主控id
+}
+message Files{
+	bytes filedata = 1;//文件数据
+	string fileName = 2;//文件名前缀
+	int64 readlong = 3;//读取长度
+	int64 realAllLong = 4;//总长度
+	string hz = 5;//文件名后缀
+}
+message Cookies{
+	string key = 1;
+	string value = 2;
+}
+message Websocketms{
+	string path = 1;
+	string sendMessage = 2;//请求和返回的数据
+	string id = 3;
+	HttpSession session = 4;
+	string type = 5;//open,message,close,change
+}
+message PathDataCachepro{//业务服务器主推的方式进行缓存
+	string path = 1;
+	string message = 2;
+}
+message LineLog{//调用链日志
+	string mainId = 1;
+	string parentId = 2;
+	string id = 3;
+}

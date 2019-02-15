@@ -1,0 +1,12 @@
+package *{importpath}*.sql;
+
+public class *{modeloname}*Sqls {
+
+	public static String countSql = "select count(*) count from *{sysname}*_*{modelname}* where 1=1 ${where}";
+	public static String *{modelname}*Sql = "select * from *{sysname}*_*{modelname}* where 1=1 ${where} order by id offset ? rows fetch next ? rows only";
+	public static String insertSql = "insert into *{sysname}*_*{modelname}* values(?,?,?,?,?,?)";
+	public static String deleteSql = "delete from *{sysname}*_*{modelname}* where id = ?";
+	public static String batchDeleteSql = "delete from *{sysname}*_*{modelname}* where id in (${ids})";
+	
+	public static String updateStatusSql = "update *{sysname}*_*{modelname}* set status = ?,explain=? where id = ?";
+}

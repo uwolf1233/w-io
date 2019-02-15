@@ -1,0 +1,17 @@
+.title_ul{
+	margin-left:36%;
+	margin-top:0px;
+	font-size:18px;
+}
+.wiotitle{
+	margin-top:3px;
+}
+#httpContent{
+	display:none;
+}
+#webSocketContent{
+	display:none;
+}
+#inServerContent{
+	display:none;
+}

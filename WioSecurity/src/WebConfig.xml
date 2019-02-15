@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<systemtype>linux</systemtype>
+	<port>8003</port>
+	<bossNum>2</bossNum>
+	<workerNum>2</workerNum>
+	<!-- 超时,秒 -->
+	<sessionTime>20</sessionTime>
+	<!-- 组 -->
+	<poolsNum>1</poolsNum>
+	<!-- 每组元素 -->
+	<poolNum>50</poolNum>
+	<!-- 扫描时间间隔,秒-->
+	<sessionScanMinute>10</sessionScanMinute>
+</Config>

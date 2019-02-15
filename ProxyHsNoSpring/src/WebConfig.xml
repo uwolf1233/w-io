@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebConfig>
+	<!-- 当前服务器ip，port -->
+	<serverConfig ip='127.0.0.1' port='5678' httpBossNum='2' httpWorkerNum='6' type='windows'>
+<!-- 		<session> -->
+			<!-- session扫描，分钟 -->
+<!-- 			<sessionScanMinute>1</sessionScanMinute> -->
+<!-- 		</session> -->
+		<view>
+			<!-- 前端文件路径 -->
+<!-- 			<path>/WebAPP</path> -->
+			<path>H:/MeProject1/ProxyHs/WebAPP</path>
+			<!-- 文件过滤后缀 -->
+			<viewtype>.html,.js,.css,.png,.gif,.ico,.eot,.woff,.ttf,.svg</viewtype>
+		</view>
+		<!-- 最大重试连接数，后端和前端，0表示不尝试重连 -->
+		<maxReadCont>3</maxReadCont>
+	</serverConfig>
+	<!-- 注册中心配置 -->
+	<clientConfig port='9000' clientBossNum='2' clientWorkNum='30'></clientConfig>
+	<!-- 日志IP -->
+	<logIp>localhost</logIp>
+	<!-- 日志端口 -->
+	<logPort>8002</logPort>
+	<!-- websocket配置 -->
+	<websocketConfig port='5680' BossNum='2' WorkNum='6'></websocketConfig>
+	<!-- 负载均衡策略 -->
+	<loadStrategy>2</loadStrategy>
+	<!-- 会话ip -->
+ 	<sessionIp>localhost</sessionIp>
+	<!-- 会话端口 -->
+ 	<sessionPort>8003</sessionPort>
+</WebConfig>

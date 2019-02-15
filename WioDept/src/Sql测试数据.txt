@@ -1,0 +1,21 @@
+insert into system_dept values(replace(newid(),'-',''),'总公司','1','1','system','0','0')
+insert into system_dept values(replace(newid(),'-',''),'总经办','1','1','system','22630C54F9E840EB80855844DB246D8A','0')
+insert into system_dept values(replace(newid(),'-',''),'财务部','1','1','system','4AA65A1CA5664488A871B30B82A4C6FD','0')
+insert into system_dept values(replace(newid(),'-',''),'运营部','1','1','system','4AA65A1CA5664488A871B30B82A4C6FD','0')
+insert into system_dept values(replace(newid(),'-',''),'人力部','1','1','system','4AA65A1CA5664488A871B30B82A4C6FD','0')
+insert into system_dept values(replace(newid(),'-',''),'研发部','1','1','system','4AA65A1CA5664488A871B30B82A4C6FD','0')
+
+insert into system_depttype values(replace(newid(),'-',''),'某某技术有限公司','system')
+insert into system_depttype values(replace(newid(),'-',''),'总经办','system')
+insert into system_depttype values(replace(newid(),'-',''),'销售部','system')
+insert into system_depttype values(replace(newid(),'-',''),'财务部','system')
+insert into system_depttype values(replace(newid(),'-',''),'研发部','system')
+insert into system_depttype values(replace(newid(),'-',''),'人力部','system')
+
+insert into system_deptproperty values(replace(newid(),'-',''),'公司','system')
+insert into system_deptproperty values(replace(newid(),'-',''),'部门','system')
+insert into system_deptproperty values(replace(newid(),'-',''),'岗位','system')
+
+
+
+

@@ -1,0 +1,12 @@
+create table system_users( --用户管理
+	id varchar(100) primary key,
+	name varchar(100),
+	systemname varchar(100), --系统名字
+	pid varchar(100),
+	isend varchar(10) --是否末节点,0是否，1是是
+)
+create table system_dept_user( --用户对应部门
+	deptid varchar(100),
+	userid varchar(100),
+	systemname varchar(100) --系统名字
+)

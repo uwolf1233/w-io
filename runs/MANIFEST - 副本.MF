@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Class-Path: lib\commons-logging-1.2.jar lib\dom4j-1.6.1.jar lib\gson-2
+ .7.jar lib\IKAnalyzer2012_FF.jar lib\lucene-analyzers-common-5.5.3.ja
+ r lib\lucene-core-5.5.3.jar lib\lucene-highlighter-5.5.3.jar lib\luce
+ ne-memory-5.5.3.jar lib\lucene-queries-5.5.3.jar lib\lucene-querypars
+ er-5.5.3.jar lib\netty-all-4.1.6.Final.jar lib\protobuf-java-3.5.1.ja
+ r lib\spring-aop-4.1.6.RELEASE.jar lib\spring-beans-4.1.6.RELEASE.jar
+  lib\spring-context-4.1.6.RELEASE.jar lib\spring-context-support-4.0.
+ 9.RELEASE.jar lib\spring-core-4.1.6.RELEASE.jar lib\spring-expression
+ -4.1.6.RELEASE.jar lib\spring-tx-4.1.6.RELEASE.jar lib\WIO-Server.jar
+Main-Class: com.wolf.spring.StartInit
+

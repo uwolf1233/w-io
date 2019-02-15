@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Config>
+	<systemtype>linux</systemtype>
+	<logIp>localhost</logIp>
+	<logPort>8002</logPort>
+
+	<port>8001</port>
+	<bossNum>2</bossNum>
+	<workerNum>4</workerNum>
+</Config>

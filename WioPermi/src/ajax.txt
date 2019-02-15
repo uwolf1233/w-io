@@ -1,0 +1,20 @@
+var savePermiJson = [{'name':'permi1','systemname':'system','pid':'1','isend':'1','datas':'1,2','datatype':'id','dataclass':'runtasknum','roleid':'123456789'}];
+$.ajax({
+	url:'/permi_savePermi?sessionId=123123',
+	data:{'jsonData':JSON.stringify(savePermiJson)},
+	type:'get',
+	dataType:'json',
+	success:function(data){
+		console.log(JSON.stringify(data));
+	}
+});
+var getRolePermiJSON = {'systemname':'system','userid':'a40242ecebe440b4996d434707578062','dataclass':'runtasknum'};
+$.ajax({
+	url:'/role_getPermiFromUserid?sessionId=123123',
+	data:getRolePermiJSON,
+	type:'get',
+	dataType:'json',
+	success:function(data){
+		console.log(JSON.stringify(data));
+	}
+});

@@ -1,0 +1,16 @@
+syntax = "proto3";
+package com.wolf.javabean;
+message LogDatas{
+	Logs logs = 1;
+}
+message Logs{
+	string mainId = 1;//主ID
+	string parentId = 2;//调用ID
+	string id = 3;//当前ID
+	string time = 4;//时间
+	string message = 5;//消息
+	string path = 6;//路径
+	string serverName = 7;//服务名
+	string ip = 8;//ip地址
+	string type = 9;//类型，1为正常，0为异常
+}

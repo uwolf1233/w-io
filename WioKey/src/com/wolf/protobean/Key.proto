@@ -1,0 +1,16 @@
+syntax = "proto3";
+package com.wolf.javabean;
+message Datas{
+	Emcrypt emcrypt = 1;
+	Dmcrypt dmcrypt = 2;
+	string type = 3;//2是字符串的请求和返回成功,3字符串的请求解密和返回成功,-1是加密解密失败
+	string id = 4;
+}
+message Emcrypt{//加密
+	string data = 1;//加密前请求
+	bytes rdata = 2;//加密后返回
+}
+message Dmcrypt{//解密
+	bytes data = 1;//解密前请求
+	string rdata = 2;//解密后返回
+}

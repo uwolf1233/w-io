@@ -1,0 +1,31 @@
+package *{importpath}*.service;
+
+import java.util.List;
+
+import *{importpath}*.dao.*{modeloname}*Dao;
+import *{importpath}*.javaBean.*{modeloname}*;
+import *{importpath}*.javaBean.Page;
+import com.wolf.javabean.ReqResBean;
+
+public class *{modeloname}*Server {
+
+	private *{modeloname}*Server(){}
+	
+	public static *{modeloname}*Server *{modelname}*Server = new *{modeloname}*Server();
+	
+	public Page<*{modeloname}*> queryForPage(int page,int pageSize,*{modeloname}* *{modelname}*,String type,ReqResBean rrb){
+		return *{modeloname}*Dao.*{modelname}*Dao.queryForPage(page, pageSize, *{modelname}*, type, rrb);
+	}
+	
+	public int insert(*{modeloname}* *{modelname}*,ReqResBean rrb){
+		return *{modeloname}*Dao.*{modelname}*Dao.insert(*{modelname}*, rrb);
+	}
+	
+	public int update(*{modeloname}* *{modelname}*,ReqResBean rrb){
+		return *{modeloname}*Dao.*{modelname}*Dao.update(*{modelname}*, rrb);
+	}
+	
+	public int deleteIds(String ids,ReqResBean rrb){
+		return *{modeloname}*Dao.*{modelname}*Dao.deleteIds(ids, rrb);
+	}
+}

@@ -1,0 +1,1 @@
+protoc --proto_path=H:\MeProject1\ProxyHs\src\com\wolf\protobean  --java_out=H:\MeProject1\ProxyHs\src  H:\MeProject1\ProxyHs\src\com\wolf\protobean\*.proto
